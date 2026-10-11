@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Md Gausul Azam | Academic Portfolio</title>
+    <style>
+        /* CSS Reset & Variables */
+        :root {
+            --primary-color: #0f172a; /* Deep Navy */
+            --secondary-color: #2563eb; /* Academic Blue */
+            --accent-color: #e2e8f0;
+            --text-main: #334155;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --font-heading: Georgia, "Times New Roman", serif;
+            --font-body: "Segoe UI", system-ui, -apple-system, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Navigation - Glassmorphism */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 15px 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Layout Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 100px 20px 40px; /* Offset for fixed nav */
+        }
+
+        /* Section Global Styles */
+        section {
+            background: var(--bg-white);
+            padding: 50px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border-top: 4px solid var(--secondary-color);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            color: var(--primary-color);
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        /* Hero / Header Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            background: transparent;
+            box-shadow: none;
+            border: none;
+            padding: 40px 0;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin: 0 0 10px 0;
+            line-height: 1.2;
+        }
+
+        .hero-content h2 {
+            font-family: var(--font-body);
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            border: none;
+            margin: 0 0 15px 0;
+            padding: 0;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .hero-image {
+            width: 250px;
+            height: 250px;
+            border-radius: 12px; /* Modern square-rounded look */
+            object-fit: cover;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 5px solid white;
+        }
+
+        /* Cards & Grid Layouts */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--bg-light);
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary-color);
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        /* Skills Tags */
+        .skill-group {
+            margin-bottom: 25px;
+        }
+        
+        .skill-group h4 {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            font-family: var(--font-body);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: #e0e7ff;
+            color: #3730a3;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid #c7d2fe;
+        }
+
+        /* Lists */
+        .academic-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .academic-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        .academic-list li::before {
+            content: "▪";
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+            top: -2px;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-main);
+            background: var(--bg-light);
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background: #e2e8f0;
+            color: var(--secondary-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            .hero-image {
+                width: 200px;
+                height: 200px;
+            }
+            section {
+                padding: 30px 20px;
+            }
+            nav {
+                padding: 10px;
+            }
+            nav a {
+                margin: 5px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#skills">Skills</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="container">
+        
+        <!-- HERO SECTION -->
+        <div id="home" class="hero">
+            <div class="hero-content">
+                <h1>Md Gausul Azam</h1>
+                <h2>M.Sc Student & Researcher</h2>
+                <p><strong>Department of Biochemistry and Molecular Biology</strong><br>
+                University of Rajshahi | Rajshahi, Bangladesh</p>
+            </div>
+            <img src="profile.jpeg" alt="Md Gausul Azam" class="hero-image">
+        </div>
+
+        <!-- ABOUT SECTION -->
+        <section id="about">
+            <h2>About Me</h2>
+            <p>I am an M.Sc. Thesis Student in the Department of Biochemistry and Molecular Biology at the University of Rajshahi. I graduated with a B.Sc. (Honors) ranking First Class First (CGPA 3.94/4.00) and received the Dean's Award from the Faculty of Science for academic excellence. My core research interests lie in Cancer Biology, Translational Oncology, Drug Repurposing, and CRISPR-Cas9 Gene Editing.</p>
+            <p>Currently, at the Protein and Cancer Biology Laboratory, my research focuses on investigating the anticancer mechanisms of small molecules and assessing the therapeutic potential of repurposed drugs across breast, liver, and lung cancer cell lines. My findings have been published in peer-reviewed journals and accepted at prominent international oncology conferences, including ESMO and IASLC. I am deeply committed to advancing cancer therapeutics and making meaningful contributions to the field of oncological research.</p>
+        </section>
+
+        <!-- EDUCATION SECTION -->
+        <section id="education">
+            <h2>Education</h2>
+            <div class="card">
+                <span class="badge">Session: 2019-20</span>
+                <h3>B.Sc. in Biochemistry and Molecular Biology</h3>
+                <p><strong>University of Rajshahi</strong></p>
+                <p style="color: var(--secondary-color); font-weight: 600;">CGPA: 3.94 (First in Class)</p>
+            </div>
+        </section>
+
+        <!-- RESEARCH SECTION -->
+        <section id="research">
+            <h2>Research Experience</h2>
+            
+            <div class="skill-group" style="margin-bottom: 30px;">
+                <h4>Research Interests</h4>
+                <div class="skill-tags">
+                    <span class="skill-tag">Cancer Biology</span>
+                    <span class="skill-tag">Translational Oncology</span>
+                    <span class="skill-tag">CRISPR-Cas9 Gene Editing</span>
+                    <span class="skill-tag">Drug Repurposing</span>
+                    <span class="skill-tag">Cancer Therapeutics</span>
+                </div>
+            </div>
+
+            <h4>Current Project</h4>
+            <div class="card">
+                <span class="badge">2024 – Present</span>
+                <h3>Investigation of the synergistic anticancer effects of Eltrombopag Olamine and Doxorubicin in A549 lung cancer cells</h3>
+                <p><strong>Role:</strong> M.Sc. Thesis Student</p>
+                <p><strong>Laboratory:</strong> Protein and Cancer Biology Laboratory, University of Rajshahi</p>
+                <p><strong>Description:</strong> Investigating anticancer mechanisms of small molecules and assessing the therapeutic potential of repurposed drugs in combination with chemotherapeutic agents. The research involves cell culture, molecular assays, functional validation of TP53 involvement using CRISPR-Cas9-mediated TP53 knockout in MCF-7 and A549 cancer cells, and in vivo experiments using Swiss albino mice for anticancer activity assessment.</p>
+            </div>
+        </section>
+
+        <!-- PUBLICATIONS SECTION -->
+        <section id="publications">
+            <h2>Publications</h2>
+            <div class="card">
+                <span class="badge" style="background: #059669;">Published (2025)</span>
+                <h3>Desloratadine Induces TP53-Dependent Apoptosis in MCF-7 Breast Cancer Cells</h3>
+                <p><strong>Role:</strong> Co-Author (Investigation, Writing – Original Draft)</p>
+                <p><strong>Journal:</strong> Cells (Impact Factor: 5.1)</p>
+                <p><strong>DOI / Link:</strong> <a href="https://doi.org/10.3390/cells14211725" target="_blank" style="color: var(--secondary-color);">10.3390/cells14211725</a></p>
+            </div>
+        </section>
+
+        <!-- SKILLS SECTION -->
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <div class="grid-container">
+                <div class="skill-group">
+                    <h4>Cell Culture & Animal Models</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MCF-7</span>
+                        <span class="skill-tag">A549</span>
+                        <span class="skill-tag">SMMC-7721</span>
+                        <span class="skill-tag">HEK293T</span>
+                        <span class="skill-tag">Swiss Albino Mice Handling</span>
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <h4>Molecular Biology</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">CRISPR-Cas9 Gene Editing</span>
+                        <span class="skill-tag">Gene Knockout Models</span>
+                        <span class="skill-tag">Plasmid Isolation</span>
+                        <span class="skill-tag">Cell Transfection</span>
+                        <span class="skill-tag">RNA Isolation</span>
+                        <span class="skill-tag">cDNA Synthesis</span>
+                        <span class="skill-tag">PCR</span>
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <h4>Cell-Based Assays</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MTT Assay</span>
+                        <span class="skill-tag">Annexin V</span>
+                        <span class="skill-tag">ROS Detection</span>
+                        <span class="skill-tag">MDC</span>
+                        <span class="skill-tag">Hoechst 33342</span>
+                        <span class="skill-tag">Cell Cycle Analysis</span>
+                    </div>
+                </div>
+
+                <div class="skill-group">
+                    <h4>Core Instrumentation & Tools</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Flow Cytometry</span>
+                        <span class="skill-tag">Fluorescence Microscopy</span>
+                        <span class="skill-tag">RT-PCR</span>
+                        <span class="skill-tag">Nano-Drop</span>
+                        <span class="skill-tag">Molecular Docking</span>
+                        <span class="skill-tag">Manuscript Writing</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ACHIEVEMENTS, CONFERENCES & LEADERSHIP -->
+        <section id="achievements">
+            <h2>Achievements & Academic Activities</h2>
+            
+            <div class="grid-container">
+                <div>
+                    <h4 style="border-bottom: 1px solid var(--accent-color); padding-bottom: 5px;">Awards & Fellowships</h4>
+                    <ul class="academic-list">
+                        <li><strong>Dean’s Award (2026)</strong> - Faculty of Science, University of Rajshahi for achieving 1st position (CGPA: 3.94/4.00).</li>
+                        <li><strong>Best Oral Presenter (2025)</strong> - 1st Scientific Conference of Veterinary and Animal Science, University of Rajshahi (Ranked 1st among 42).</li>
+                        <li><strong>National Science and Technology (NST) Fellowship</strong> - Ministry of Science and Technology, Government of Bangladesh (2024–2025).</li>
+                        <li><strong>Tania Akter Merit Scholarship</strong> - Department of Biochemistry and Molecular Biology, University of Rajshahi.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 style="border-bottom: 1px solid var(--accent-color); padding-bottom: 5px;">Professional Affiliations & Training</h4>
+                    <ul class="academic-list">
+                        <li><strong>ESMO Member</strong> (ID: 809238) - European Society for Medical Oncology (2026 - Present).</li>
+                        <li><strong>Research Training: Virology Laboratory</strong> - icddr,b (2024).</li>
+                        <li><strong>Research Training: Genome Center</strong> - icddr,b (2024).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h4 style="border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; margin-top: 30px;">Conferences & Presentations</h4>
+            <ul class="academic-list">
+                <li><strong>IASLC 2026 World Conference on Lung Cancer</strong>, Seoul, South Korea | <em>E-Poster | First Author</em> <br> "Context-dependent anticancer activity of Eltrombopag olamine and its selective synergy with Doxorubicin in breast cancer cells."</li>
+                <li><strong>ESMO Asia Congress 2026</strong>, Singapore | <em>Presenting Author</em> <br> "Antiproliferative activity and cell death mechanism of eltrombopag olamine alone and synergistic interaction with doxorubicin in A549 lung adenocarcinoma cells."</li>
+                <li><strong>MOSB Congress 2026 (Best of ASCO)</strong>, Dhaka, Bangladesh | <em>Poster | Presenting Author</em> <br> "Repurposing Diphenhydramine for Cancer Therapy."</li>
+                <li><strong>ICBHA 2025 (GNOBB)</strong> | <em>First & Presenting Author</em> <br> "Amaranthus gangeticus Seed Lectin (AGL) Induces Apoptosis and Cell Cycle Arrest in Human Lung Cancer Cells."</li>
+                <li><strong>2nd ICRAST 2025</strong>, University of Rajshahi | <em>Co-author</em> <br> "Functional validation of TP53-dependent apoptosis induced by desloratadine in breast cancer cells (MCF-7) using CRISPR-Cas9."</li>
+            </ul>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact">
+            <h2>Contact Information</h2>
+            <p>I am actively engaged in cancer research and open to academic discussions and collaborations. Feel free to reach out via email or connect with me on professional platforms.</p>
+            
+            <div class="contact-grid">
+                <a href="mailto:gausulazam.bmb@gmail.com" class="contact-link">📧 gausulazam.bmb@gmail.com</a>
+                <a href="tel:+8801704458931" class="contact-link">📞 +880-1704458931</a>
+                <a href="https://www.linkedin.com/in/md-gausul-azam" target="_blank" class="contact-link">💼 LinkedIn Profile</a>
+                <a href="https://orcid.org/0009-0006-2836-1686" target="_blank" class="contact-link">🔬 ORCID</a>
+                <a href="https://www.researchgate.net/profile/Gausul-Azam-7" target="_blank" class="contact-link">📚 ResearchGate</a>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 Md Gausul Azam. Designed for Academic Excellence.</p>
+        </footer>
+
+    </div>
+</body>
+</html>
